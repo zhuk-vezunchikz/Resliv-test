@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="storage.js" charset="utf-8"></script>
+  </head>
+  <body>
+  <button onclick="getItem(event)">Чтение</button>
+  <p><button onclick="setItem(event)">Записать</button> Добавить в localStorage key: newKey</p>
+  <button onclick="deleteItem(event)">Удаление</button>
+  <p></p>
+  <iframe src="http://localhost/" width="468" height="60" align="left" id="iframe">
+    Ваш браузер не поддерживает плавающие фреймы!
+  </iframe>
+  <script>
+
+    let cross;
+
+    window.onload = () => {
+      const onMessage = (payload, event) => {
+        const data = payload.data;
+        switch (payload.method) {
+          case 'storage#get':
+            console.log('message data', payload);
+            break;
+          default:
+            console.error('Unknown method "' + payload.method + '"', payload);
+        }
+      };
+
+      const iframe = document.getElementsByTagName('iframe')[0];
+      cross = new CrossOriginLocalStorage(window, iframe, onMessage);
+    };
+
+    const setItem = (event) => {
+      cross.setData('key', 'newKey');
+    };
+
+    const getItem = (event) => {
+      cross.getData('key');
+    };
+
+    const deleteItem = (event) => {
+      cross.deleteData('key');
+    };
+
+  </script>
+
+  </body>
+</html>
