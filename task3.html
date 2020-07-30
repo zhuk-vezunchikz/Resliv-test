@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      let url = "https://reqres.in/api/users?per_page=12";
+      let response1 = fetch(url);
+      let response2 = fetch(url);
+
+      Promise.all([
+              response1,
+              response2
+      ]).then(res => {
+        alert("Success")
+      })
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

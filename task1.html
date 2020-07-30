@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      const validation = (event) => {
+        const element = document.getElementById("name_input");
+
+        if (element.value != element.defaultValue) {
+          element.setAttribute("class", "red");
+        } else {
+          element.removeAttribute("class");
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+    <style>.red {color: red;}</style>
+    <input onchange="validation(event)" type="text" name="name" id="name_input" value="Xxxx">
+  </body>
+</html>
